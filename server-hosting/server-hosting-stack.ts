@@ -65,6 +65,8 @@ export class ServerHostingStack extends Stack {
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.udp(15000), "Beacon port")
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.udp(15777), "Query port")
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(7777), "v1.0 Game port")
+    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.udp(8888), "v1.1")
+    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8888), "v1.1")
 
     const server = new ec2.Instance(this, `${prefix}Server`, {
       // 2 vCPU, 8 GB RAM should be enough for most factories
